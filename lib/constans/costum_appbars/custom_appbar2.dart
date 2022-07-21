@@ -5,13 +5,17 @@ class CustomAppbar2 extends StatelessWidget {
   const CustomAppbar2({
     Key? key,
     required this.appBarTitle,
+    this.appBarColor = Colors.grey,
+    this.appBarTitleColor = Colors.white,
   }) : super(key: key);
   final String appBarTitle;
+  final Color appBarColor;
+  final Color appBarTitleColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black.withOpacity(0.5),
+      color: appBarColor,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -21,13 +25,15 @@ class CustomAppbar2 extends StatelessWidget {
               onTap: () {
                 print('Back'); // Back to last page
               },
-              child: const LeftArrowIcon(),
+              child: LeftArrowIcon(
+                iconColor: appBarTitleColor,
+              ),
             ),
             Text(
               appBarTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 25,
-                color: Colors.white,
+                color: appBarTitleColor,
               ),
             ),
             Container(
