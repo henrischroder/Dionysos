@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
 import 'package:projekt_dionysos/constans/custom_icons/profil_icon.dart';
+import 'package:projekt_dionysos/constans/custom_icons/right_arrow_icon.dart';
 
 class RegisterProfilpicView extends StatefulWidget {
   const RegisterProfilpicView({Key? key}) : super(key: key);
@@ -96,6 +97,23 @@ class _RegisterProfilpicViewState extends State<RegisterProfilpicView> {
                     ),
                   ),
                 ),
+                GestureDetector(
+                  onTap: () {
+                    print('Überspringen');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        'überspringen',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                      RightArrowIcon(
+                        iconColor: Colors.blue,
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),

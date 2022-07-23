@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
 
-class RegisterUsernameView extends StatefulWidget {
-  const RegisterUsernameView({Key? key}) : super(key: key);
+class CreatePartyNewParty extends StatefulWidget {
+  const CreatePartyNewParty({Key? key}) : super(key: key);
 
   @override
-  State<RegisterUsernameView> createState() => _RegisterUsernameViewState();
+  State<CreatePartyNewParty> createState() => _CreatePartyNewPartyState();
 }
 
-class _RegisterUsernameViewState extends State<RegisterUsernameView> {
-  late final TextEditingController _birthday;
+class _CreatePartyNewPartyState extends State<CreatePartyNewParty> {
+  late final TextEditingController _partyTitle;
+  late final TextEditingController _discription;
 
   @override
   void initState() {
-    _birthday = TextEditingController();
+    _partyTitle = TextEditingController();
+    _discription = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    _birthday.dispose();
+    _partyTitle.dispose();
+    _discription.dispose();
     super.dispose();
   }
 
@@ -33,7 +36,7 @@ class _RegisterUsernameViewState extends State<RegisterUsernameView> {
       body: Column(
         children: [
           const CustomAppbar2(
-            appBarTitle: 'Wähle einen Nutzernamen',
+            appBarTitle: 'Neues Event',
             appBarColor: Colors.white,
             appBarTitleColor: Colors.black,
           ),
@@ -44,20 +47,50 @@ class _RegisterUsernameViewState extends State<RegisterUsernameView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: EdgeInsets.symmetric(vertical: 5),
                   child: Text(
-                    'Deine Freunde adden dich über deinen Nutzernamen bei Dionysos.',
+                    'Gruppenbild',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 93, 93, 93),
+                      color: Colors.grey,
                       fontSize: 15,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
+                Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          print('Gruppenbild auswählen');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                spreadRadius: 5,
+                                blurRadius: 5,
+                                offset: const Offset(4, 3),
+                              ),
+                            ],
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(30),
+                            child: Icon(
+                              Icons.add_a_photo_rounded,
+                              color: Color.fromARGB(255, 93, 93, 93),
+                              size: 100,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 5),
                   child: Text(
-                    'Nutzername',
+                    'Partytitel',
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 15,
@@ -67,14 +100,33 @@ class _RegisterUsernameViewState extends State<RegisterUsernameView> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: TextField(
-                    controller: _birthday,
+                    controller: _partyTitle,
+                    autocorrect: false,
+                    enableSuggestions: true,
+                    autofocus: true,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Text(
+                    'Beschreibung',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: TextField(
+                    controller: _discription,
                     autocorrect: false,
                     enableSuggestions: true,
                     autofocus: true,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: newHeight / 7),
+                  padding: EdgeInsets.symmetric(vertical: newHeight / 7.5),
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
