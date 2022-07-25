@@ -10,7 +10,9 @@ import 'package:projekt_dionysos/views/main_views/settings_view.dart';
 import 'package:projekt_dionysos/views/new_settings_view.dart';
 import 'package:projekt_dionysos/views/party_archiv_view.dart';
 import 'package:projekt_dionysos/views/registration_views/register_birthday_view.dart';
+import 'package:projekt_dionysos/views/registration_views/register_email_view.dart';
 import 'package:projekt_dionysos/views/registration_views/register_name_view.dart';
+import 'package:projekt_dionysos/views/registration_views/register_password_view.dart';
 import 'package:projekt_dionysos/views/registration_views/register_profilpic_view.dart';
 import 'package:projekt_dionysos/views/registration_views/register_username_view.dart';
 import 'package:projekt_dionysos/views/registration_views/register_view.dart';
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CreatePartyNewParty(),
+      home: const LoginView(),
     );
   }
 }

@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class RegisterPasswordView extends StatefulWidget {
+  const RegisterPasswordView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterPasswordView> createState() => _RegisterPasswordViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
-  late final TextEditingController _email;
+class _RegisterPasswordViewState extends State<RegisterPasswordView> {
   late final TextEditingController _password;
+  late final TextEditingController _password2;
 
   @override
   void initState() {
-    _email = TextEditingController();
     _password = TextEditingController();
+    _password2 = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    _email.dispose();
     _password.dispose();
+    _password2.dispose();
     super.dispose();
   }
 
@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
       body: Column(
         children: [
           const CustomAppbar2(
-            appBarTitle: 'Login',
+            appBarTitle: 'Wähle einen Passwort',
             appBarColor: Colors.white,
             appBarTitleColor: Colors.black,
           ),
@@ -47,22 +47,14 @@ class _LoginViewState extends State<LoginView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    'Nutzername oder Email',
+                    'Dein Passwort sollte min. 8 Zeichen lang sein.',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 93, 93, 93),
                       fontSize: 15,
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: TextField(
-                    controller: _email,
-                    autocorrect: false,
-                    enableSuggestions: true,
-                    autofocus: true,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 const Padding(
@@ -85,23 +77,24 @@ class _LoginViewState extends State<LoginView> {
                     obscureText: true,
                   ),
                 ),
-                Center(
-                  child: TextButton(
-                    onPressed: () {
-                      print('Passwort vergessen');
-                    },
-                    child: const Text('Passwort vergessen?'),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Text(
+                    'Passwort wiederholen',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
-                Center(
-                  child: TextButton(
-                    onPressed: () {
-                      print('Registrieren');
-                    },
-                    child: const Text(
-                      'Noch nicht Registriert? Registriere dich hier!',
-                      textAlign: TextAlign.center,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: TextField(
+                    controller: _password2,
+                    autocorrect: false,
+                    enableSuggestions: true,
+                    autofocus: true,
+                    obscureText: true,
                   ),
                 ),
                 Padding(

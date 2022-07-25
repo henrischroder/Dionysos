@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class RegisterEmailView extends StatefulWidget {
+  const RegisterEmailView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterEmailView> createState() => _RegisterEmailViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _RegisterEmailViewState extends State<RegisterEmailView> {
   late final TextEditingController _email;
-  late final TextEditingController _password;
 
   @override
   void initState() {
     _email = TextEditingController();
-    _password = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
     _email.dispose();
-    _password.dispose();
     super.dispose();
   }
 
@@ -36,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
       body: Column(
         children: [
           const CustomAppbar2(
-            appBarTitle: 'Login',
+            appBarTitle: 'Wie lautet deine Email?',
             appBarColor: Colors.white,
             appBarTitleColor: Colors.black,
           ),
@@ -49,7 +46,7 @@ class _LoginViewState extends State<LoginView> {
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 5),
                   child: Text(
-                    'Nutzername oder Email',
+                    'Email',
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 15,
@@ -66,42 +63,14 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    'Passwort',
+                    'Wir schicken dir einen Bestätigungscode/Bestätigungsemail (muss Gilbert entscheiden aber ich wäre für Bestätigungscode) per Email',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 93, 93, 93),
                       fontSize: 15,
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: TextField(
-                    controller: _password,
-                    autocorrect: false,
-                    enableSuggestions: true,
-                    autofocus: true,
-                    obscureText: true,
-                  ),
-                ),
-                Center(
-                  child: TextButton(
-                    onPressed: () {
-                      print('Passwort vergessen');
-                    },
-                    child: const Text('Passwort vergessen?'),
-                  ),
-                ),
-                Center(
-                  child: TextButton(
-                    onPressed: () {
-                      print('Registrieren');
-                    },
-                    child: const Text(
-                      'Noch nicht Registriert? Registriere dich hier!',
-                      textAlign: TextAlign.center,
-                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Padding(
