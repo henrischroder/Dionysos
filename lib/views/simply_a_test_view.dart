@@ -25,7 +25,31 @@ class _TestViewState extends State<TestView> {
       style: optionStyle,
     ),
     ProfilView(),
-    NewPartyView(),
+    NewPartyView(partyTitel: [
+      'House Party',
+      'Geburtstag',
+      'Spiele Abend',
+      'Bierpong Turnier',
+      'Liebe machen',
+    ], partycreater: [
+      'Gilbert',
+      'Henri',
+      'Fjore',
+      'Anton',
+      'Tim Jörns',
+    ], discription: [
+      'Absturz',
+      'Will Geld',
+      'Monopoly',
+      'Saufen',
+      'Bangen bis wir umfallen und Geld',
+    ], boxColor: [
+      Colors.blueGrey,
+      Colors.red,
+      Colors.yellow,
+      Colors.green,
+      Colors.pink,
+    ]),
     Text(
       'Kalender',
       style: optionStyle,
