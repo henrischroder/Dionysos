@@ -7,12 +7,16 @@ class NewBoxContainer extends StatelessWidget {
     required this.partyTitel,
     required this.ersteller,
     required this.discription,
+    required this.isNew,
+    required this.newMessage,
     // required this.startTime,
   }) : super(key: key);
   final Color boxColor;
   final String partyTitel;
   final String discription;
   final String ersteller;
+  final bool isNew;
+  final bool newMessage;
   //final DateTime startTime;
 
   @override
@@ -135,30 +139,57 @@ class NewBoxContainer extends StatelessWidget {
             ),
             Transform.translate(
               offset: const Offset(150, -5),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      spreadRadius: 5,
-                      blurRadius: 5,
-                      offset: const Offset(4, 3),
-                    ),
-                  ],
-                ),
-                width: 60,
-                height: 30,
-                alignment: Alignment.center,
-                child: const Text(
-                  'New',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+              child: isNew
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 5,
+                            blurRadius: 5,
+                            offset: const Offset(4, 3),
+                          ),
+                        ],
+                      ),
+                      width: 60,
+                      height: 30,
+                      alignment: Alignment.center,
+                      child: const Text(
+                        'New',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : newMessage
+                      ? Container(
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                spreadRadius: 5,
+                                blurRadius: 5,
+                                offset: const Offset(4, 3),
+                              ),
+                            ],
+                          ),
+                          width: 60,
+                          height: 30,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'New',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
             ),
           ],
         ),

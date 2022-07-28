@@ -60,6 +60,7 @@ class _RegisterEmailViewState extends State<RegisterEmailView> {
                     autocorrect: false,
                     enableSuggestions: true,
                     autofocus: true,
+                    keyboardType: TextInputType.emailAddress,
                   ),
                 ),
                 const Padding(

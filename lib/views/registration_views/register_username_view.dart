@@ -9,17 +9,17 @@ class RegisterUsernameView extends StatefulWidget {
 }
 
 class _RegisterUsernameViewState extends State<RegisterUsernameView> {
-  late final TextEditingController _birthday;
+  late final TextEditingController _username;
 
   @override
   void initState() {
-    _birthday = TextEditingController();
+    _username = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    _birthday.dispose();
+    _username.dispose();
     super.dispose();
   }
 
@@ -67,7 +67,7 @@ class _RegisterUsernameViewState extends State<RegisterUsernameView> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: TextField(
-                    controller: _birthday,
+                    controller: _username,
                     autocorrect: false,
                     enableSuggestions: true,
                     autofocus: true,

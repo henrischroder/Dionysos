@@ -10,6 +10,8 @@ class NewPartyView extends StatelessWidget {
   final List<String> partycreater;
   final List<String> discription;
   final List<Color> boxColor;
+  final List<bool> isNew;
+  final List<bool> newMessage;
 
   const NewPartyView({
     Key? key,
@@ -17,6 +19,8 @@ class NewPartyView extends StatelessWidget {
     required this.partycreater,
     required this.discription,
     required this.boxColor,
+    required this.isNew,
+    required this.newMessage,
   }) : super(key: key);
 
   @override
@@ -45,6 +49,8 @@ class NewPartyView extends StatelessWidget {
                 partyTitel: partyTitel[index],
                 ersteller: partycreater[index],
                 discription: discription[index],
+                isNew: isNew[index],
+                newMessage: newMessage[index],
               );
             },
           ),

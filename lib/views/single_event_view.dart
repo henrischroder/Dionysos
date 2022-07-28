@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar3.dart';
+import 'package:projekt_dionysos/constans/custom_icons/down_arrow_icon.dart';
+import 'package:projekt_dionysos/constans/custom_icons/up_arrow_icon.dart';
 import 'package:projekt_dionysos/constans/custom_widgets/benachrichtigungen_dropdownButton_widget.dart';
-
 import 'package:projekt_dionysos/constans/custom_widgets/single_teilnehmer_widget.dart';
 
 class SingleEventView extends StatefulWidget {
   const SingleEventView({
     Key? key,
+    required this.participans,
+    required this.isFriend,
   }) : super(key: key);
+  final List<String> participans;
+  final List<bool> isFriend;
 
   @override
   State<SingleEventView> createState() => _SingleEventViewState();
 }
 
 class _SingleEventViewState extends State<SingleEventView> {
+  bool showMore = false;
+  bool greaterThanFive = true;
+
   @override
   Widget build(BuildContext context) {
     var padding = MediaQuery.of(context).padding;
@@ -21,8 +29,12 @@ class _SingleEventViewState extends State<SingleEventView> {
     double height = MediaQuery.of(context).size.height;
     double newHeight = height - padding.top - padding.bottom;
 
-    int teilnehmer = 24;
+    int teilnehmer = widget.participans.length;
     String teilnehmerAnzahl = teilnehmer.toString();
+
+    if (widget.participans.length <= 5) {
+      greaterThanFive = false;
+    }
 
     return Scaffold(
       body: SafeArea(
@@ -279,106 +291,156 @@ class _SingleEventViewState extends State<SingleEventView> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '$teilnehmerAnzahl Teilnehmer',
-                            style: const TextStyle(
-                              color: Color.fromARGB(255, 236, 236, 236),
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: const Color.fromARGB(255, 42, 42, 42),
-                          child: SizedBox(
-                            height: newHeight / 2,
-                            child: ListView(
-                              children: const [
-                                SingleTeilnehmerWidget(
-                                    userName: 'Anton Diessel', isFriend: true),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Fjore Kroppach',
-                                  isFriend: false,
-                                ),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Elvis Hanuschke',
-                                  isFriend: true,
-                                ),
-                                SingleTeilnehmerWidget(
-                                    userName: 'Tim Jörns', isFriend: true),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Mick Eisfelder',
-                                  isFriend: false,
-                                ),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Gilbert Beckeer',
-                                  isFriend: true,
-                                ),
-                                SingleTeilnehmerWidget(
-                                    userName: 'Emma Peggau', isFriend: true),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Lilly Jendrossek',
-                                  isFriend: false,
-                                ),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Rozana Horeshka',
-                                  isFriend: true,
-                                ),
-                                SingleTeilnehmerWidget(
-                                    userName: 'Jonah Piening', isFriend: true),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Luca Job Done-Ziekelie',
-                                  isFriend: false,
-                                ),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Marius Daemie',
-                                  isFriend: true,
-                                ),
-                                SingleTeilnehmerWidget(
-                                    userName: 'Anton Diessel', isFriend: true),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Fjore Kroppach',
-                                  isFriend: false,
-                                ),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Elvis Hanuschke',
-                                  isFriend: true,
-                                ),
-                                SingleTeilnehmerWidget(
-                                    userName: 'Tim Jörns', isFriend: true),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Mick Eisfelder',
-                                  isFriend: false,
-                                ),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Gilbert Beckeer',
-                                  isFriend: true,
-                                ),
-                                SingleTeilnehmerWidget(
-                                    userName: 'Emma Peggau', isFriend: true),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Lilly Jendrossek',
-                                  isFriend: false,
-                                ),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Rozana Horeshka',
-                                  isFriend: true,
-                                ),
-                                SingleTeilnehmerWidget(
-                                    userName: 'Jonah Piening', isFriend: true),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Luca Job Done-Ziekelie',
-                                  isFriend: false,
-                                ),
-                                SingleTeilnehmerWidget(
-                                  userName: 'Marius Daemie',
-                                  isFriend: true,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        greaterThanFive
+                            ? Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '$teilnehmerAnzahl Teilnehmer',
+                                      style: const TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 236, 236, 236),
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    color:
+                                        const Color.fromARGB(255, 42, 42, 42),
+                                    child: AnimatedContainer(
+                                      curve: Curves.easeOut,
+                                      duration: const Duration(seconds: 1),
+                                      height: showMore
+                                          ? newHeight /
+                                              20 *
+                                              widget.participans.length
+                                          : newHeight / 20 * 5,
+                                      child: Stack(
+                                        children: [
+                                          ListView.builder(
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            itemCount:
+                                                widget.participans.length,
+                                            itemBuilder: (context, index) {
+                                              return SingleTeilnehmerWidget(
+                                                userName:
+                                                    widget.participans[index],
+                                                isFriend:
+                                                    widget.isFriend[index],
+                                              );
+                                            },
+                                          ),
+                                          AnimatedContainer(
+                                            duration:
+                                                const Duration(seconds: 1),
+                                            curve: Curves.easeOut,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              gradient: LinearGradient(
+                                                begin:
+                                                    FractionalOffset.topCenter,
+                                                end: FractionalOffset
+                                                    .bottomCenter,
+                                                colors: [
+                                                  const Color.fromARGB(
+                                                          255, 31, 31, 31)
+                                                      .withOpacity(0.0),
+                                                  const Color.fromARGB(
+                                                          255, 31, 31, 31)
+                                                      .withOpacity(
+                                                          showMore ? 0.0 : 0.8),
+                                                ],
+                                                stops: const [0.0, 1.0],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          showMore = !showMore;
+                                        });
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: const Duration(seconds: 1),
+                                        curve: Curves.easeOut,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            showMore
+                                                ? const UpArrowIcon(
+                                                    iconSize: 20,
+                                                  )
+                                                : const DownArrowIcon(
+                                                    iconSize: 20,
+                                                  ),
+                                            Text(
+                                              showMore
+                                                  ? 'Weniger Anzeigen'
+                                                  : 'Mehr Anzeigen',
+                                              style: const TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 236, 236, 236),
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                            showMore
+                                                ? const UpArrowIcon(
+                                                    iconSize: 20,
+                                                  )
+                                                : const DownArrowIcon(
+                                                    iconSize: 20,
+                                                  ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '$teilnehmerAnzahl Teilnehmer',
+                                      style: const TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 236, 236, 236),
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    color:
+                                        const Color.fromARGB(255, 42, 42, 42),
+                                    child: SizedBox(
+                                      height: newHeight /
+                                          20 *
+                                          widget.participans.length,
+                                      child: ListView.builder(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount: widget.participans.length,
+                                        itemBuilder: (context, index) {
+                                          return SingleTeilnehmerWidget(
+                                            userName: widget.participans[index],
+                                            isFriend: widget.isFriend[index],
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                         const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
@@ -451,7 +513,7 @@ class _SingleEventViewState extends State<SingleEventView> {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
