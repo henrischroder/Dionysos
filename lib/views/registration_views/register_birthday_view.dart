@@ -92,11 +92,32 @@ class _RegisterBirthdayViewState extends State<RegisterBirthdayView> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: TextField(
-                    controller: _birthday,
-                    autocorrect: false,
-                    enableSuggestions: true,
-                    autofocus: true,
+                  child: _DatePickerItem(
+                    children: [
+                      const Text('date'),
+                      CupertinoButton(
+                        // Display a CupertinoDatePicker in date picker mode.
+                        onPressed: () => _showDialog(
+                          CupertinoDatePicker(
+                            initialDateTime: date,
+                            mode: CupertinoDatePickerMode.date,
+                            use24hFormat: true,
+                            // This is called when the user changes the date.
+                            onDateTimeChanged: (DateTime newDate) {
+                              setState(() => date = newDate);
+                            },
+                          ),
+                        ),
+                        // In this example, the date value is formatted manually. You can use intl package
+                        // to format the value based on user's locale settings.
+                        child: Text(
+                          '${date.month}-${date.day}-${date.year}',
+                          style: const TextStyle(
+                            fontSize: 22.0,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
@@ -137,6 +158,37 @@ class _RegisterBirthdayViewState extends State<RegisterBirthdayView> {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _DatePickerItem extends StatelessWidget {
+  const _DatePickerItem({required this.children});
+
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: CupertinoColors.inactiveGray,
+            width: 0.0,
+          ),
+          bottom: BorderSide(
+            color: CupertinoColors.inactiveGray,
+            width: 0.0,
+          ),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: children,
+        ),
       ),
     );
   }

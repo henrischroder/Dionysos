@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
 
-class CreatePartyNewParty extends StatefulWidget {
-  const CreatePartyNewParty({Key? key}) : super(key: key);
+class CreatePartyNewPartyView extends StatefulWidget {
+  const CreatePartyNewPartyView({Key? key}) : super(key: key);
 
   @override
-  State<CreatePartyNewParty> createState() => _CreatePartyNewPartyState();
+  State<CreatePartyNewPartyView> createState() =>
+      _CreatePartyNewPartyViewState();
 }
 
-class _CreatePartyNewPartyState extends State<CreatePartyNewParty> {
+class _CreatePartyNewPartyViewState extends State<CreatePartyNewPartyView> {
   late final TextEditingController _partyTitle;
   late final TextEditingController _discription;
 
