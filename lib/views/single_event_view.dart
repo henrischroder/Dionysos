@@ -20,6 +20,8 @@ class SingleEventView extends StatefulWidget {
 
 class _SingleEventViewState extends State<SingleEventView> {
   bool showMore = false;
+  bool accept = false;
+  bool deni = false;
   bool greaterThanFive = true;
 
   @override
@@ -192,18 +194,29 @@ class _SingleEventViewState extends State<SingleEventView> {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      print('Zusagen');
+                                      print(accept
+                                          ? 'Nicht mehr Zugesagt'
+                                          : 'Zusagen');
+                                      setState(() {
+                                        accept = !accept;
+                                        deni = false;
+                                      });
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Container(
+                                      child: AnimatedContainer(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        curve: Curves.easeOut,
                                         height: newHeight / 17,
                                         width: width / 6.5,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
-                                          color: const Color.fromARGB(
-                                              255, 236, 236, 236),
+                                          color: accept
+                                              ? Colors.green
+                                              : const Color.fromARGB(
+                                                  255, 236, 236, 236),
                                           boxShadow: [
                                             BoxShadow(
                                               color:
@@ -240,18 +253,29 @@ class _SingleEventViewState extends State<SingleEventView> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      print('Absagen');
+                                      print(deni
+                                          ? 'Nicht mehr Abgesagt'
+                                          : 'Absagen');
+                                      setState(() {
+                                        deni = !deni;
+                                        accept = false;
+                                      });
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Container(
+                                      child: AnimatedContainer(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        curve: Curves.easeOut,
                                         height: newHeight / 17,
                                         width: width / 6.5,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
-                                          color: const Color.fromARGB(
-                                              255, 236, 236, 236),
+                                          color: deni
+                                              ? Colors.red
+                                              : const Color.fromARGB(
+                                                  255, 236, 236, 236),
                                           boxShadow: [
                                             BoxShadow(
                                               color:
@@ -475,7 +499,7 @@ class _SingleEventViewState extends State<SingleEventView> {
                             child: Container(
                               height: newHeight / 17,
                               decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 236, 236, 236),
+                                color: Colors.red,
                                 borderRadius: BorderRadius.circular(10.0),
                                 boxShadow: [
                                   BoxShadow(

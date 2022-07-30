@@ -38,23 +38,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const SingleEventView(
-          participans: [
-            'Gilbert',
-            'Anton',
-            'Fjore',
-            'Mick',
-            'Tim',
-            'Jonah',
-          ],
-          isFriend: [
-            true,
-            true,
-            false,
-            true,
-            false,
-            false,
-          ],
-        ));
+        home: const RegisterBirthdayView());
   }
 }

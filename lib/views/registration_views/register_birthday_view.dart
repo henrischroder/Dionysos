@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
+import 'package:flutter/cupertino.dart';
 
 class RegisterBirthdayView extends StatefulWidget {
   const RegisterBirthdayView({Key? key}) : super(key: key);
@@ -11,6 +12,8 @@ class RegisterBirthdayView extends StatefulWidget {
 class _RegisterBirthdayViewState extends State<RegisterBirthdayView> {
   late final TextEditingController _birthday;
 
+  DateTime date = DateTime(2022, 10, 26);
+
   @override
   void initState() {
     _birthday = TextEditingController();
@@ -21,6 +24,25 @@ class _RegisterBirthdayViewState extends State<RegisterBirthdayView> {
   void dispose() {
     _birthday.dispose();
     super.dispose();
+  }
+
+  void _showDialog(Widget child) {
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) => Container(
+        height: 216,
+        padding: const EdgeInsets.only(top: 6.0),
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        // Background color
+        color: CupertinoColors.systemBackground.resolveFrom(context),
+        child: SafeArea(
+          top: false,
+          child: child,
+        ),
+      ),
+    );
   }
 
   @override
@@ -43,13 +65,28 @@ class _RegisterBirthdayViewState extends State<RegisterBirthdayView> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
-                  child: Text(
-                    'Geburtstag',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
+                GestureDetector(
+                  onTap: () {
+                    _showDialog(
+                      CupertinoDatePicker(
+                        initialDateTime: date,
+                        mode: CupertinoDatePickerMode.date,
+                        onDateTimeChanged: (DateTime newDate) {
+                          setState(() {
+                            date = newDate;
+                          });
+                        },
+                      ),
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      'Geburtstag',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 15,
+                      ),
                     ),
                   ),
                 ),
