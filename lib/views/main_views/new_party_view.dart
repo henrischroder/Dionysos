@@ -4,6 +4,7 @@ import 'package:projekt_dionysos/constans/custom_taskbar.dart';
 
 import 'package:projekt_dionysos/constans/custom_widgets/new_box_container.dart';
 import 'package:projekt_dionysos/constans/custom_widgets/privat_public_widget.dart';
+import 'package:projekt_dionysos/views/create_party-views/create-party-participants-view.dart';
 
 class NewPartyView extends StatelessWidget {
   final List<String> partyTitel;
@@ -12,6 +13,7 @@ class NewPartyView extends StatelessWidget {
   final List<Color> boxColor;
   final List<bool> isNew;
   final List<bool> newMessage;
+  final List<String> friends;
 
   const NewPartyView({
     Key? key,
@@ -21,6 +23,7 @@ class NewPartyView extends StatelessWidget {
     required this.boxColor,
     required this.isNew,
     required this.newMessage,
+    required this.friends,
   }) : super(key: key);
 
   @override
@@ -58,7 +61,16 @@ class NewPartyView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreatePartyParticipantsView(
+                    friends: friends,
+                  ),
+                ),
+              );
+            },
             child: const Icon(Icons.add),
           ),
         ),

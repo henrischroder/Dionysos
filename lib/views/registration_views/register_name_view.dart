@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
+import 'package:projekt_dionysos/views/registration_views/register_birthday2_view.dart';
 
 class RegisterNameView extends StatefulWidget {
   const RegisterNameView({Key? key}) : super(key: key);
@@ -97,7 +98,12 @@ class _RegisterNameViewState extends State<RegisterNameView> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        print('Registrieren und Akzeptieren');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterBirthday2View(),
+                          ),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(

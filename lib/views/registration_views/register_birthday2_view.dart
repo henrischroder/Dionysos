@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
+import 'package:projekt_dionysos/views/registration_views/register_profilpic_view.dart';
+import 'package:projekt_dionysos/views/registration_views/register_username_view.dart';
 
 class RegisterBirthday2View extends StatefulWidget {
   const RegisterBirthday2View({Key? key}) : super(key: key);
@@ -103,7 +105,12 @@ class _RegisterBirthday2ViewState extends State<RegisterBirthday2View> {
                     child: Center(
                       child: GestureDetector(
                         onTap: () {
-                          print('Weiter');
+                          Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterProfilpicView(),
+                        ),
+                      );
                         },
                         child: Container(
                           decoration: BoxDecoration(

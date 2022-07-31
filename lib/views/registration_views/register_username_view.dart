@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
+import 'package:projekt_dionysos/views/registration_views/register_password_view.dart';
 
 class RegisterUsernameView extends StatefulWidget {
   const RegisterUsernameView({Key? key}) : super(key: key);
@@ -78,7 +79,12 @@ class _RegisterUsernameViewState extends State<RegisterUsernameView> {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        print('Weiter');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterPasswordView(),
+                          ),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(

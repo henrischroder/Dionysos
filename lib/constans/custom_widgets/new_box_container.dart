@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projekt_dionysos/views/single_event_view.dart';
 
 class NewBoxContainer extends StatelessWidget {
   const NewBoxContainer({
@@ -25,7 +26,44 @@ class NewBoxContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () {
-          print('Event');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SingleEventView(participans: [
+                'Anton',
+                'Gilbert',
+                'Fjore',
+                'Elvis',
+                'Mick',
+                'Tim',
+                'Emma',
+                'Marius',
+                'Ari',
+                'Lilly',
+                'Carla',
+                'Carlo',
+                'Luca',
+                'Jonah',
+                'Erik',
+              ], isFriend: [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+              ]),
+            ),
+          );
         },
         child: Stack(
           children: [

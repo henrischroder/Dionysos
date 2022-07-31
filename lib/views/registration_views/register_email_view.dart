@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
+import 'package:projekt_dionysos/views/simply_a_test_view.dart';
 
 class RegisterEmailView extends StatefulWidget {
   const RegisterEmailView({Key? key}) : super(key: key);
@@ -79,7 +80,12 @@ class _RegisterEmailViewState extends State<RegisterEmailView> {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        print('Weiter');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TestView(),
+                          ),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(

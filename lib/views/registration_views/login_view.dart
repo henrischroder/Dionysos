@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
+import 'package:projekt_dionysos/views/registration_views/register_name_view.dart';
+import 'package:projekt_dionysos/views/simply_a_test_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -96,7 +98,12 @@ class _LoginViewState extends State<LoginView> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      print('Registrieren');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterNameView(),
+                        ),
+                      );
                     },
                     child: const Text(
                       'Noch nicht Registriert? Registriere dich hier!',
@@ -109,7 +116,12 @@ class _LoginViewState extends State<LoginView> {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        print('Weiter');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TestView(),
+                          ),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(

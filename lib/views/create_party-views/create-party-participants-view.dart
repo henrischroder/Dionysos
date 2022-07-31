@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
 import 'package:projekt_dionysos/constans/custom_icons/profil_icon.dart';
 import 'package:projekt_dionysos/constans/custom_icons/right_arrow_icon.dart';
+import 'package:projekt_dionysos/views/create_party-views/create-party-new-party-view.dart';
 
 class CreatePartyParticipantsView extends StatelessWidget {
   final List<String> friends;
@@ -51,26 +52,36 @@ class CreatePartyParticipantsView extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: newHeight / 17,
-                    width: width * 0.3,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 125, 206, 117),
-                      borderRadius: BorderRadius.circular(20.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          spreadRadius: 5,
-                          blurRadius: 5,
-                          offset: const Offset(4, 3),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CreatePartyNewPartyView(),
                         ),
-                      ],
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Weiter',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
+                      );
+                    },
+                    child: Container(
+                      height: newHeight / 17,
+                      width: width * 0.3,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 125, 206, 117),
+                        borderRadius: BorderRadius.circular(20.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 5,
+                            blurRadius: 5,
+                            offset: const Offset(4, 3),
+                          ),
+                        ],
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'Weiter',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),

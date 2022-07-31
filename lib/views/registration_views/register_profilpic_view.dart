@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
 import 'package:projekt_dionysos/constans/custom_icons/profil_icon.dart';
 import 'package:projekt_dionysos/constans/custom_icons/right_arrow_icon.dart';
+import 'package:projekt_dionysos/views/registration_views/register_username_view.dart';
 
 class RegisterProfilpicView extends StatefulWidget {
   const RegisterProfilpicView({Key? key}) : super(key: key);
@@ -68,7 +69,12 @@ class _RegisterProfilpicViewState extends State<RegisterProfilpicView> {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        print('Weiter');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterUsernameView(),
+                          ),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -99,7 +105,12 @@ class _RegisterProfilpicViewState extends State<RegisterProfilpicView> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print('Überspringen');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterUsernameView(),
+                      ),
+                    );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
+import 'package:projekt_dionysos/views/registration_views/register_email_view.dart';
 
 class RegisterPasswordView extends StatefulWidget {
   const RegisterPasswordView({Key? key}) : super(key: key);
@@ -102,7 +103,12 @@ class _RegisterPasswordViewState extends State<RegisterPasswordView> {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        print('Weiter');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterEmailView(),
+                          ),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(

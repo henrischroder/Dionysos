@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar2.dart';
+import 'package:projekt_dionysos/views/create_party-views/create_party_time_view.dart';
 
 class CreatePartyNewPartyView extends StatefulWidget {
   const CreatePartyNewPartyView({Key? key}) : super(key: key);
@@ -131,7 +132,13 @@ class _CreatePartyNewPartyViewState extends State<CreatePartyNewPartyView> {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        print('Weiter');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CreatePartyTimeView(),
+                          ),
+                        );
+                        ;
                       },
                       child: Container(
                         decoration: BoxDecoration(

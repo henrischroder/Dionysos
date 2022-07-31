@@ -28,7 +28,7 @@ class CustomAppbar2 extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                print('Back'); // Back to last page
+                Navigator.pop(context); //Geht besser aber fürs erste okay
               },
               child: LeftArrowIcon(
                 iconColor: appBarTitleColor,
