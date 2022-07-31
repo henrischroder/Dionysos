@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/views/another_test_view.dart';
 import 'package:projekt_dionysos/views/create_party-views/create-party-new-party-view.dart';
 import 'package:projekt_dionysos/views/create_party-views/create-party-participants-view.dart';
+import 'package:projekt_dionysos/views/create_party-views/create_party_time_view.dart';
 import 'package:projekt_dionysos/views/registration_views/login_view.dart';
 import 'package:projekt_dionysos/views/main_views/create_new_party_view.dart';
 import 'package:projekt_dionysos/views/main_views/current_party_view.dart';
@@ -39,6 +40,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const CreatePartyNewPartyView());
+        home: const CreatePartyTimeView());
   }
 }
