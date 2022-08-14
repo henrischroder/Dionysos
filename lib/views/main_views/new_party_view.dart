@@ -37,6 +37,7 @@ class NewPartyView extends StatelessWidget {
       children: [
         const CustomAppBar(
           appBarTitle: 'New Partys',
+          
         ),
         const PrivatPublicWidget(),
         SizedBox(

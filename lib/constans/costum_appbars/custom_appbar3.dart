@@ -19,7 +19,7 @@ class CustomAppbar3 extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                print('Back'); // Back to last page
+                Navigator.pop(context); // Back to last page
               },
               child: const LeftArrowIcon(),
             ),
