@@ -7,7 +7,7 @@ import 'package:projekt_dionysos/views/main_views/starter_view.dart';
 import 'package:projekt_dionysos/views/new_party_archiv_view.dart';
 import 'package:projekt_dionysos/views/registration_views/login_view.dart';
 import 'package:projekt_dionysos/views/main_views/create_new_party_view.dart';
-import 'package:projekt_dionysos/views/main_views/current_party_view.dart';
+import 'package:projekt_dionysos/views/main_views/event_view.dart';
 import 'package:projekt_dionysos/views/main_views/new_party_view.dart';
 import 'package:projekt_dionysos/views/main_views/profil_view.dart';
 import 'package:projekt_dionysos/views/main_views/settings_view.dart';
@@ -42,41 +42,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const NewPartyArchivView(
-          partyTitel: [
-            'House Party',
-            'Geburtstag',
-            'Spiele Abend',
-            'Bierpong Turnier',
-            'Liebe machen',
-          ],
-          ersteller: [
-            'Gilbert',
-            'Henri',
-            'Fjore',
-            'Anton',
-            'Tim Jörns',
-          ],
-          dicription: [
-            'Absturz',
-            'Will Geld',
-            'Monopoly',
-            'Saufen',
-            'Bangen bis wir umfallen und Geld',
-          ],
-          boxColor: [
-            Colors.blueGrey,
-            Colors.red,
-            Colors.yellow,
-            Colors.green,
-            Colors.pink,
-          ],
-          years: [
-            '2022',
-            '2021',
-            '2020',
-            '2019',
-          ],
-        ));
+        home: const TestView());
   }
 }

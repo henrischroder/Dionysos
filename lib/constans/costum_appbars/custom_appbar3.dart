@@ -10,7 +10,12 @@ class CustomAppbar3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var padding = MediaQuery.of(context).padding;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double newHeight = height - padding.top - padding.bottom;
     return Container(
+      height: newHeight / 16,
       color: Colors.black.withOpacity(0.5),
       child: Padding(
         padding: const EdgeInsets.all(8.0),

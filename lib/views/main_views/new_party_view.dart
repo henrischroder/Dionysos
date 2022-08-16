@@ -37,9 +37,63 @@ class NewPartyView extends StatelessWidget {
       children: [
         const CustomAppBar(
           appBarTitle: 'New Partys',
-          
         ),
         const PrivatPublicWidget(),
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: newHeight / 17,
+                width: width * 0.6,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 5,
+                      blurRadius: 5,
+                      offset: const Offset(4, 3),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: const [Icon(Icons.search), Text('Suchen')],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: newHeight / 17,
+                width: width * 0.3,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 5,
+                      blurRadius: 5,
+                      offset: const Offset(4, 3),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [Icon(Icons.filter_list), Text('Filter')],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
         SizedBox(
           height: 400,
           width: width,

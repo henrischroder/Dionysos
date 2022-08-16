@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/custom_icons/calendar_icon.dart';
 import 'package:projekt_dionysos/constans/custom_icons/event_icon.dart';
 import 'package:projekt_dionysos/constans/custom_icons/profil_icon.dart';
-import 'package:projekt_dionysos/views/main_views/current_party_view.dart';
+import 'package:projekt_dionysos/views/main_views/event_view.dart';
 import 'package:projekt_dionysos/views/main_views/new_party_view.dart';
 import 'package:projekt_dionysos/views/main_views/profil_view.dart';
 import 'package:projekt_dionysos/views/main_views/settings_view.dart';
@@ -25,7 +25,7 @@ class _TestViewState extends State<TestView> {
       style: optionStyle,
     ),
     ProfilView(),
-    NewPartyView(
+    EventView(
       partyTitel: [
         'House Party',
         'Geburtstag',
