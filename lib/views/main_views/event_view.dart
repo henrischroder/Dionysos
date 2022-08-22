@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/costum_appbars/custom_appbar3.dart';
+import 'package:projekt_dionysos/constans/custom_icons/down_arrow_icon.dart';
 
 import 'package:projekt_dionysos/constans/custom_widgets/new_box_container.dart';
 import 'package:projekt_dionysos/views/create_party-views/create-party-participants-view.dart';
+import 'package:projekt_dionysos/views/new_party_archiv_view.dart';
 
 class EventView extends StatefulWidget {
   final List<String> partyTitel;
@@ -44,7 +46,7 @@ class _EventViewState extends State<EventView> {
               Stack(
                 children: [
                   Container(
-                    color: Colors.red,
+                    color: const Color.fromARGB(255, 46, 46, 46),
                     height: newHeight / 6,
                     width: width,
                   ),
@@ -52,109 +54,165 @@ class _EventViewState extends State<EventView> {
                 ],
               ),
               Container(
-                color: Colors.blue,
+                color: Colors.grey.shade200,
                 width: width,
                 height: newHeight / 6 * 5,
-                child: Column(
+                child: Stack(
                   children: [
-                    SizedBox(
-                      height: newHeight / 15,
-                    ),
-                    Row(
+                    Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: newHeight / 17,
-                            width: width * 0.6,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  spreadRadius: 5,
-                                  blurRadius: 5,
-                                  offset: const Offset(4, 3),
-                                ),
-                              ],
-                            ),
-                            child: Padding(
+                        SizedBox(
+                          height: newHeight / 15,
+                        ),
+                        Row(
+                          children: [
+                            Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: const [
-                                  Icon(Icons.search),
-                                  Text('Suchen')
-                                ],
+                              child: Container(
+                                height: newHeight / 17,
+                                width: width * 0.6,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      spreadRadius: 5,
+                                      blurRadius: 5,
+                                      offset: const Offset(4, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: const [
+                                      Icon(Icons.search),
+                                      Text('Suchen')
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: newHeight / 17,
+                                width: width * 0.3,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      spreadRadius: 5,
+                                      blurRadius: 5,
+                                      offset: const Offset(4, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Icon(Icons.filter_list),
+                                      Text('Filter')
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: newHeight / 1.8,
+                          width: width,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: widget.partyTitel.length,
+                            itemBuilder: (context, index) {
+                              return NewBoxContainer(
+                                boxColor: widget.boxColor[index],
+                                partyTitel: widget.partyTitel[index],
+                                ersteller: widget.partycreater[index],
+                                discription: widget.discription[index],
+                                isNew: widget.isNew[index],
+                                newMessage: widget.newMessage[index],
+                              );
+                            },
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: newHeight / 17,
-                            width: width * 0.3,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  spreadRadius: 5,
-                                  blurRadius: 5,
-                                  offset: const Offset(4, 3),
+                          child: FloatingActionButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      CreatePartyParticipantsView(
+                                    friends: widget.friends,
+                                  ),
                                 ),
-                              ],
+                              );
+                            },
+                            backgroundColor: Colors.orange,
+                            child: const Icon(
+                              Icons.group_add_rounded,
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(Icons.filter_list),
-                                  Text('Filter')
-                                ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const NewPartyArchivView(
+                                  partyTitel: [
+                                    'House Party',
+                                    'Geburtstag',
+                                    'Spiele Abend',
+                                    'Bierpong Turnier',
+                                    'Liebe machen',
+                                  ],
+                                  ersteller: [
+                                    'Gilbert',
+                                    'Henri',
+                                    'Fjore',
+                                    'Anton',
+                                    'Tim Jörns',
+                                  ],
+                                  dicription: [
+                                    'Absturz',
+                                    'Will Geld',
+                                    'Monopoly',
+                                    'Saufen',
+                                    'Bangen bis wir umfallen und Geld',
+                                  ],
+                                  boxColor: [
+                                    Colors.blueGrey,
+                                    Colors.red,
+                                    Colors.yellow,
+                                    Colors.green,
+                                    Colors.pink,
+                                  ],
+                                  years: [
+                                    '2022',
+                                    '2021',
+                                    '2020',
+                                    '2019',
+                                  ],
+                                ),
                               ),
-                            ),
+                            );
+                          },
+                          child: const DownArrowIcon(
+                            iconSize: 25,
                           ),
                         ),
                       ],
-                    ),
-                    SizedBox(
-                      height: newHeight / 2,
-                      width: width,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: widget.partyTitel.length,
-                        itemBuilder: (context, index) {
-                          return NewBoxContainer(
-                            boxColor: widget.boxColor[index],
-                            partyTitel: widget.partyTitel[index],
-                            ersteller: widget.partycreater[index],
-                            discription: widget.discription[index],
-                            isNew: widget.isNew[index],
-                            newMessage: widget.newMessage[index],
-                          );
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: FloatingActionButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CreatePartyParticipantsView(
-                                friends: widget.friends,
-                              ),
-                            ),
-                          );
-                        },
-                        child: const Icon(Icons.add),
-                      ),
                     ),
                   ],
                 ),
@@ -177,7 +235,7 @@ class _EventViewState extends State<EventView> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: const Color.fromARGB(255, 46, 46, 46),
                             borderRadius: private
                                 ? BorderRadius.only(
                                     bottomLeft: Radius.circular(newHeight / 18),
@@ -192,7 +250,7 @@ class _EventViewState extends State<EventView> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Colors.grey.shade200,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(newHeight / 18),
                               topRight: Radius.circular(newHeight / 18),
@@ -203,7 +261,7 @@ class _EventViewState extends State<EventView> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: const Color.fromARGB(255, 46, 46, 46),
                             borderRadius: private
                                 ? BorderRadius.only(
                                     bottomRight:
@@ -234,7 +292,7 @@ class _EventViewState extends State<EventView> {
                             child: Text(
                               'Privat',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 126, 126, 126),
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -255,7 +313,7 @@ class _EventViewState extends State<EventView> {
                             child: Text(
                               'Public',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 126, 126, 126),
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                               ),

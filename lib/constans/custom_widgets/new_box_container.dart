@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/views/single_event_view.dart';
 
@@ -73,10 +75,16 @@ class NewBoxContainer extends StatelessWidget {
                 color: boxColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 5,
-                    blurRadius: 5,
-                    offset: const Offset(4, 3),
+                    color: Colors.grey.shade500,
+                    spreadRadius: 1,
+                    blurRadius: 15,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    spreadRadius: 1,
+                    blurRadius: 15,
+                    offset: Offset(-5, -5),
                   ),
                 ],
               ),
@@ -178,43 +186,17 @@ class NewBoxContainer extends StatelessWidget {
             Transform.translate(
               offset: const Offset(150, -5),
               child: isNew
-                  ? Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            spreadRadius: 5,
-                            blurRadius: 5,
-                            offset: const Offset(4, 3),
-                          ),
-                        ],
-                      ),
-                      width: 60,
-                      height: 30,
-                      alignment: Alignment.center,
-                      child: const Text(
-                        'New',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 5,
+                          sigmaY: 5,
                         ),
-                      ),
-                    )
-                  : newMessage
-                      ? Container(
+                        child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: Colors.blue.withOpacity(0.7),
                             borderRadius: BorderRadius.circular(10.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                spreadRadius: 5,
-                                blurRadius: 5,
-                                offset: const Offset(4, 3),
-                              ),
-                            ],
                           ),
                           width: 60,
                           height: 30,
@@ -224,6 +206,34 @@ class NewBoxContainer extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : newMessage
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 5,
+                              sigmaY: 5,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.orange.withOpacity(0.7),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              width: 60,
+                              height: 30,
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'New',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ),
                         )
