@@ -12,51 +12,66 @@ class NeumorphismEventBoxWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(newHeight / 42),
       child: Container(
-        height: newHeight / 2 + 30,
-        width: width / 2 + 30,
-        color: Colors.amber,
-        child: Container(
-          width: width / 2,
-          height: newHeight / 2,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            gradient: RadialGradient(
-              center: Alignment.topLeft,
-              radius: 2,
-              colors: [
-                Colors.grey.shade200,
-                Colors.grey.shade300,
-                Colors.grey.shade400,
-                Colors.grey.shade400,
-              ],
-              stops: const [
-                0.1,
-                0.3,
-                0.9,
-                1,
-              ],
+        height: newHeight / 2 + 25,
+        width: width / 2 + 25,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Center(
+          child: Container(
+            height: newHeight / 2 + 10,
+            width: width / 2 + 10,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
             ),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.3),
-                spreadRadius: 1,
-                blurRadius: 7,
-                offset: const Offset(
-                  3,
-                  3,
+            child: Center(
+              child: Container(
+                width: width / 2,
+                height: newHeight / 2,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  gradient: RadialGradient(
+                    center: Alignment.topLeft,
+                    radius: 2,
+                    colors: [
+                      Colors.grey.shade200,
+                      Colors.grey.shade300,
+                      Colors.grey.shade400,
+                      Colors.grey.shade400,
+                    ],
+                    stops: const [
+                      0.1,
+                      0.3,
+                      0.9,
+                      1,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      spreadRadius: 1,
+                      blurRadius: 7,
+                      offset: const Offset(
+                        3,
+                        3,
+                      ),
+                    ),
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.3),
+                      spreadRadius: 1,
+                      blurRadius: 7,
+                      offset: const Offset(
+                        -3,
+                        -3,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              BoxShadow(
-                color: Colors.white.withOpacity(0.3),
-                spreadRadius: 1,
-                blurRadius: 7,
-                offset: const Offset(
-                  -3,
-                  -3,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

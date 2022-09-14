@@ -115,7 +115,7 @@ class _AnotherTestViewState extends State<AnotherTestView> {
               ),
               SizedBox(
                 width: width,
-                height: newHeight / 2,
+                height: newHeight / 2 + 65,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,

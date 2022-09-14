@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:projekt_dionysos/constans/custom_icons/right_arrow_icon.dart';
 
 class SingleTeilnehmerWidget extends StatelessWidget {
@@ -8,9 +7,11 @@ class SingleTeilnehmerWidget extends StatelessWidget {
     Key? key,
     required this.userName,
     required this.isFriend,
+    required this.isAdmin,
   }) : super(key: key);
   final String userName;
   final bool isFriend;
+  final bool isAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +45,24 @@ class SingleTeilnehmerWidget extends StatelessWidget {
                       userName,
                       style: const TextStyle(
                         color: Color.fromARGB(255, 236, 236, 236),
-                        fontSize: 20,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  )
+                  ),
+                  isAdmin
+                      ? const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'Admin',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 236, 236, 236),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
                 ],
               ),
               GestureDetector(
@@ -59,7 +74,7 @@ class SingleTeilnehmerWidget extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 236, 236, 236),
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(20.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
@@ -69,29 +84,18 @@ class SingleTeilnehmerWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Row(
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 1.0),
-                          child: Icon(
-                            Icons.add_rounded,
-                            size: 20,
+                    child: const Padding(
+                      padding: EdgeInsets.all(6),
+                      child: Center(
+                        child: Text(
+                          'Add+',
+                          style: TextStyle(
                             color: Color.fromARGB(255, 42, 42, 42),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 2.0),
-                          child: Text(
-                            'Adden',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 42, 42, 42),
-                              fontSize: 15,
-                            ),
-                          ),
-                        )
-                      ],
+                      ),
                     ),
                   ),
                 ),
@@ -126,10 +130,24 @@ class SingleTeilnehmerWidget extends StatelessWidget {
                       userName,
                       style: const TextStyle(
                         color: Color.fromARGB(255, 236, 236, 236),
-                        fontSize: 20,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  )
+                  ),
+                  isAdmin
+                      ? const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'Admin',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 236, 236, 236),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
                 ],
               ),
             ),
