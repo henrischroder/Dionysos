@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:projekt_dionysos/views/another_test_view.dart';
+=======
+import 'package:projekt_dionysos/constans/design_elements/theme_provider.dart';
+import 'package:projekt_dionysos/views/design_test_views/animatedlist_test.dart';
+import 'package:projekt_dionysos/views/design_test_views/button_design.dart';
+import 'package:projekt_dionysos/views/design_test_views/know_wich_key_it_is.dart';
+import 'package:projekt_dionysos/views/design_test_views/own_event_container.dart';
+import 'package:projekt_dionysos/views/design_test_views/main_event_container.dart';
+import 'package:projekt_dionysos/views/test_views/animation_test_view.dart';
+import 'package:projekt_dionysos/views/test_views/another_test_view.dart';
+>>>>>>> Stashed changes
 import 'package:projekt_dionysos/views/create_party-views/create-party-new-party-view.dart';
 import 'package:projekt_dionysos/views/create_party-views/create-party-participants-view.dart';
 import 'package:projekt_dionysos/views/create_party-views/create_party_time_view.dart';
@@ -37,11 +48,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< Updated upstream
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: const TestView());
+=======
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      themeMode: ThemeMode.system,
+      theme: MyThemes.lightTheme,
+      darkTheme: MyThemes.darkTheme,
+      home: const Scaffold(
+        body: MainEventsContainer(
+          eventID: 'eventID',
+          boxColor: Colors.red,
+          dominantColor: Colors.amber,
+          eventTitle: 'eventTitle',
+          eventDiscription: 'eventDiscription',
+          eventDate: 'eventDate',
+          eventCreator: 'eventCreator',
+        ),
+      ),
+    );
+>>>>>>> Stashed changes
   }
 }
