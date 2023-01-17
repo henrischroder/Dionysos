@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'package:flutter_map_example/pages/zoombuttons_plugin_option.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:projekt_dionysos/pages/zoombuttons_plugin_option.dart';
 import 'package:projekt_dionysos/widgets/drawer.dart';
 
 class MapInsideListViewPage extends StatelessWidget {
