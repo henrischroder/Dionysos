@@ -18,6 +18,7 @@ import 'package:projekt_dionysos/pages/live_location.dart';
 import 'package:projekt_dionysos/pages/many_markers.dart';
 import 'package:projekt_dionysos/pages/map_controller.dart';
 import 'package:projekt_dionysos/pages/map_inside_listview.dart';
+import 'package:projekt_dionysos/pages/map_view.dart';
 import 'package:projekt_dionysos/pages/marker_anchor.dart';
 import 'package:projekt_dionysos/pages/marker_rotate.dart';
 import 'package:projekt_dionysos/pages/max_bounds.dart';
@@ -62,10 +63,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter demo',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: HomePage(), routes:<String, WidgetBuilder>{
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter demo',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: MapView(),
+      routes: <String, WidgetBuilder>{
         NetworkTileProviderPage.route: (context) =>
             const NetworkTileProviderPage(),
         WidgetsPage.route: (context) => const WidgetsPage(),
@@ -107,6 +109,7 @@ class App extends StatelessWidget {
             const FallbackUrlNetworkPage(),
         FallbackUrlOfflinePage.route: (context) =>
             const FallbackUrlOfflinePage(),
-      }, );
+      },
+    );
   }
 }
