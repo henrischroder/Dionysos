@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:projekt_dionysos/constans/custom_icons/right_arrow_icon.dart';
 import 'package:projekt_dionysos/constans/design_elements/boxshadows%20copy/neumorphism_boxshadow_deep.dart';
 import 'package:projekt_dionysos/constans/design_elements/boxshadows%20copy/neumorphism_boxshadow_shallow.dart';
+import 'package:projekt_dionysos/views/test_views/add_friends.dart';
+import 'package:projekt_dionysos/views/test_views/friendlist.dart';
+
+//TODO Navigator
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});
@@ -185,79 +189,98 @@ class _ProfilScreenState extends State<ProfilScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: newHeight * 0.01),
-                  child: Container(
-                    width: width * 0.8,
-                    height: newHeight / 14,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: neumorphisBoxShadowShallow(),
-                    ),
-                    child: Center(
-                      child: ListTile(
-                        title: Text(
-                          'Freunde adden',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return AddFriendsView();
+                        },
+                      ));
+                    },
+                    child: Container(
+                      width: width * 0.8,
+                      height: newHeight / 14,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: neumorphisBoxShadowShallow(),
+                      ),
+                      child: Center(
+                        child: ListTile(
+                          title: Text(
+                            'Freunde adden',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          leading: Icon(Icons.group_add_rounded),
+                          trailing: RightArrowIcon(),
                         ),
-                        leading: Icon(Icons.group_add_rounded),
-                        trailing: RightArrowIcon(),
                       ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: newHeight * 0.01),
-                  child: Container(
-                    width: width * 0.8,
-                    height: newHeight / 7,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: neumorphisBoxShadowShallow(),
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: newHeight / 14,
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(color: Colors.white, width: 1),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(right: width * 0.01),
-                            child: ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding:
-                                        EdgeInsets.only(left: width * 0.01),
-                                    child: Container(
-                                      height: newHeight / 18,
-                                      width: newHeight / 18,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white),
-                                    ),
-                                  );
-                                }),
-                          ),
-                        ),
-                        Container(
-                          height: newHeight / 14,
-                          child: Center(
-                            child: ListTile(
-                              title: Text(
-                                'Meine Freunde',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return FriendList();
+                        },
+                      ));
+                    },
+                    child: Container(
+                      width: width * 0.8,
+                      height: newHeight / 7,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: neumorphisBoxShadowShallow(),
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: newHeight / 14,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom:
+                                    BorderSide(color: Colors.white, width: 1),
                               ),
-                              leading: Icon(Icons.group),
-                              trailing: RightArrowIcon(),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(right: width * 0.01),
+                              child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding:
+                                          EdgeInsets.only(left: width * 0.01),
+                                      child: Container(
+                                        height: newHeight / 18,
+                                        width: newHeight / 18,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white),
+                                      ),
+                                    );
+                                  }),
                             ),
                           ),
-                        ),
-                      ],
+                          Container(
+                            height: newHeight / 14,
+                            child: Center(
+                              child: ListTile(
+                                title: Text(
+                                  'Meine Freunde',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                leading: Icon(Icons.group),
+                                trailing: RightArrowIcon(),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

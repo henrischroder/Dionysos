@@ -287,9 +287,14 @@ class _AddFriendsViewState extends State<AddFriendsView> {
           ),
           Padding(
             padding: EdgeInsets.all(newHeight * 0.04),
-            child: const LeftArrowIcon(
-              iconColor: Colors.red,
-              iconSize: 40,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const LeftArrowIcon(
+                iconColor: Colors.red,
+                iconSize: 40,
+              ),
             ),
           ),
         ],

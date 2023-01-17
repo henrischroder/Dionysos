@@ -66,9 +66,14 @@ class _FriendListState extends State<FriendList> {
           ),
           Padding(
             padding: EdgeInsets.all(newHeight * 0.04),
-            child: const LeftArrowIcon(
-              iconColor: Colors.red,
-              iconSize: 40,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const LeftArrowIcon(
+                iconColor: Colors.red,
+                iconSize: 40,
+              ),
             ),
           ),
         ],
