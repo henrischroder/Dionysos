@@ -6,6 +6,7 @@ import 'package:flutter_map/plugin_api.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:projekt_dionysos/constans/design_elements/boxshadows%20copy/boxshadow_shallow.dart';
+import 'package:projekt_dionysos/pages/custom_marker.dart';
 
 class MapView extends StatelessWidget {
   const MapView({super.key});
@@ -50,15 +51,7 @@ class MapView extends StatelessWidget {
         width: 80,
         height: 80,
         point: LatLng(52.174618, 9.940207),
-        builder: (ctx) => GestureDetector(
-          onTap: () {
-            print('Halle 39');
-          },
-          child: Container(
-            key: const Key('purple'),
-            child: const FlutterLogo(textColor: Colors.purple),
-          ),
-        ),
+        builder: (ctx) => CustomMarker(),
       ),
     ];
 
