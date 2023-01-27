@@ -1,24 +1,119 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:location/location.dart';
 import 'package:projekt_dionysos/constans/design_elements/boxshadows%20copy/boxshadow_shallow.dart';
 import 'package:projekt_dionysos/pages/custom_marker.dart';
 
-class MapView extends StatelessWidget {
-  const MapView({super.key});
+class MapScreen extends StatefulWidget {
+  const MapScreen({super.key});
+
+  @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  LocationData? _currentLocation;
+  late final MapController _mapController;
+
+  bool _liveUpdate = false;
+  bool _permission = false;
+
+  String? _serviceError = '';
+
+  int interActiveFlags = InteractiveFlag.all;
+
+  double zoom = 13;
+
+  final FitBoundsOptions options =
+      const FitBoundsOptions(padding: EdgeInsets.all(12));
+
+  final Location _locationService = Location();
+
+  @override
+  void initState() {
+    super.initState();
+    _mapController = MapController();
+    initLocationService();
+  }
+
+  void initLocationService() async {
+    await _locationService.changeSettings(
+      accuracy: LocationAccuracy.high,
+      interval: 1000,
+    );
+
+    LocationData? location;
+    bool serviceEnabled;
+    bool serviceRequestResult;
+
+    try {
+      serviceEnabled = await _locationService.serviceEnabled();
+
+      if (serviceEnabled) {
+        final permission = await _locationService.requestPermission();
+        _permission = permission == PermissionStatus.granted;
+
+        if (_permission) {
+          location = await _locationService.getLocation();
+          _currentLocation = location;
+          _locationService.onLocationChanged
+              .listen((LocationData result) async {
+            if (mounted) {
+              setState(() {
+                _currentLocation = result;
+
+                // If Live Update is enabled, move map center
+                if (_liveUpdate) {
+                  _mapController.move(
+                      LatLng(_currentLocation!.latitude!,
+                          _currentLocation!.longitude!),
+                      _mapController.zoom);
+                }
+              });
+            }
+          });
+        }
+      } else {
+        serviceRequestResult = await _locationService.requestService();
+        if (serviceRequestResult) {
+          initLocationService();
+          return;
+        }
+      }
+    } on PlatformException catch (e) {
+      debugPrint(e.toString());
+      if (e.code == 'PERMISSION_DENIED') {
+        _serviceError = e.message;
+      } else if (e.code == 'SERVICE_STATUS_ERROR') {
+        _serviceError = e.message;
+      }
+      location = null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    LatLng currentLatLng;
+
+    if (_currentLocation != null) {
+      currentLatLng =
+          LatLng(_currentLocation!.latitude!, _currentLocation!.longitude!);
+    } else {
+      currentLatLng = LatLng(0, 0);
+    }
+
     final markers = <Marker>[
       //Marker showing you your current location
       Marker(
         width: 25,
         height: 25,
-        point: LatLng(52.129104, 9.956231),
+        point: currentLatLng,
         builder: (ctx) => Container(
           key: const Key('blue'),
           decoration: BoxDecoration(
@@ -37,15 +132,7 @@ class MapView extends StatelessWidget {
           ),
         ),
       ),
-      Marker(
-        width: 80,
-        height: 80,
-        point: LatLng(52.161737, 9.957816),
-        builder: (ctx) => const FlutterLogo(
-          key: Key('green'),
-          textColor: Colors.green,
-        ),
-      ),
+
       Marker(
         anchorPos: AnchorPos.align(AnchorAlign.top),
         width: 80,
@@ -59,22 +146,32 @@ class MapView extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double newHeight = height - padding.top - padding.bottom;
+
     return Scaffold(
-      body: Stack(
+      body: FlutterMap(
+        mapController: _mapController,
+        options: MapOptions(
+          minZoom: 4,
+          maxZoom: 18,
+          center: LatLng(52.150002, 9.950000),
+          zoom: zoom,
+          interactiveFlags: InteractiveFlag.doubleTapZoom |
+              InteractiveFlag.drag |
+              InteractiveFlag.flingAnimation |
+              InteractiveFlag.pinchMove |
+              InteractiveFlag.pinchZoom,
+        ),
         children: [
-          FlutterMap(
-            options: MapOptions(center: LatLng(52.150002, 9.950000), zoom: 13),
-            children: [
-              TileLayer(
-                urlTemplate:
-                    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
-                userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-              ),
-              MarkerLayer(
-                markers: markers,
-              )
-            ],
+          TileLayer(
+            urlTemplate:
+                'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+            userAgentPackageName: 'dev.fleaflet.flutter_map.example',
           ),
+          MarkerLayer(
+            markers: markers,
+          )
+        ],
+        nonRotatedChildren: [
           Column(
             children: [
               ClipRect(
@@ -110,6 +207,33 @@ class MapView extends StatelessWidget {
                       ],
                     )),
                   ),
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    RotatedBox(
+                      quarterTurns: 3,
+                      child: Slider(
+                        value: zoom,
+                        onChanged: (value) {
+                          final centerZoom = _mapController.center;
+
+                          _mapController.move(
+                            centerZoom,
+                            zoom,
+                          );
+                          setState(() {
+                            zoom = value;
+                          });
+                        },
+                        min: 4,
+                        max: 18,
+                        label: '${zoom - 3} ',
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

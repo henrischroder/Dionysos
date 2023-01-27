@@ -5,6 +5,7 @@ import 'package:projekt_dionysos/constans/custom_icons/profil_icon.dart';
 import 'package:projekt_dionysos/constans/for_single_event_view/participants_widget_for_single_event.dart';
 import 'package:projekt_dionysos/pages/animated_map_controller.dart';
 import 'package:projekt_dionysos/pages/circle.dart';
+import 'package:projekt_dionysos/pages/create_event_map.dart';
 import 'package:projekt_dionysos/pages/custom_crs/custom_crs.dart';
 import 'package:projekt_dionysos/pages/epsg3413_crs.dart';
 import 'package:projekt_dionysos/pages/epsg4326_crs.dart';
@@ -43,6 +44,7 @@ import 'package:projekt_dionysos/pages/wms_tile_layer.dart';
 import 'package:projekt_dionysos/views/create_party-views/create-party-participants-view.dart';
 import 'package:projekt_dionysos/views/main_event_container.dart';
 import 'package:projekt_dionysos/views/simply_a_test_view.dart';
+import 'package:projekt_dionysos/views/sliver_app_bar_test_view.dart';
 import 'package:projekt_dionysos/views/test_views/add_friends.dart';
 import 'package:projekt_dionysos/views/test_views/animated_list_test.dart';
 import 'package:projekt_dionysos/views/test_views/can_always_get_deletet.dart';
@@ -66,7 +68,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter demo',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: MapView(),
+      home: SliverAppBarTestView(),
       routes: <String, WidgetBuilder>{
         NetworkTileProviderPage.route: (context) =>
             const NetworkTileProviderPage(),
